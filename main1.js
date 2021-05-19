@@ -11,7 +11,7 @@ d3.json(
 
   const width = 700;
   const height = 500;
-  const margin = { top: 10, left: 70, bottom: 40, right: 10 };
+  const margin = { top: 10, left: 80, bottom: 50, right: 100 };
   const iwidth = width - margin.left - margin.right;
   const iheight = height - margin.top - margin.bottom;
 
@@ -66,6 +66,31 @@ d3.json(
     .text(function (d) {
       return d.value;
     });
+
+  g.selectAll(".text")
+    .data(data)
+    .enter()
+    .append("text")
+    .attr("class", "label")
+    .style("font-size", "12px")
+    .attr("x", function (d) {
+      return x(d.value) + 5;
+    })
+    .attr("y", function (d) {
+      return y(d.name) + 15;
+    })
+    .attr("dy", ".75em")
+    .text(function (d) {
+      return d.value;
+    });
+
+  g.append("text")
+    .attr("class", "x label")
+    .attr("text-anchor", "end")
+    .style("font-size", "14px")
+    .attr("x", iwidth - 240)
+    .attr("y", iheight + 40)
+    .text("Refugees");
 
   g.append("g")
     .classed("x--axis", true)
